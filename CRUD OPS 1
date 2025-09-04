@@ -1,5 +1,4 @@
 create database company_db;
-
 USE company_db;
 
 CREATE TABLE employees (
