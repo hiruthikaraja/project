@@ -22,11 +22,11 @@ CREATE TABLE employees (
 
 INSERT INTO employees (emp_id, first_name, last_name, age, dept_id, salary)
 VALUES
-(101, 'Amit', 'Verma', 28, 1, 55000.00),   -- belongs to IT
-(102, 'Sneha', 'Reddy', 32, 2, 60000.00),  -- belongs to HR
-(103, 'Ravi', 'Sharma', 26, NULL, 48000.00), -- employee with NO department
-(104, 'Pooja', 'Iyer', 29, 4, 52000.00),   -- belongs to Marketing
-(105, 'Arjun', 'Mehta', 35, 1, 75000.00);  -- belongs to IT
+(101, 'Amit', 'Verma', 28, 1, 55000.00),   
+(102, 'Sneha', 'Reddy', 32, 2, 60000.00),  
+(103, 'Ravi', 'Sharma', 26, NULL, 48000.00),
+(104, 'Pooja', 'Iyer', 29, 4, 52000.00),  
+(105, 'Arjun', 'Mehta', 35, 1, 75000.00); 
 
 
 
