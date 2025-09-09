@@ -5,6 +5,7 @@ product varchar(50),
 quantity int,
 price decimal(10,2),
 order_date date);
+
 INSERT INTO orders (customer_name, product, quantity, price, order_date) VALUES
 ('Rahul Sharma', 'Laptop', 1, 55000.00, '2025-01-05'),
 ('Priya Singh', 'Headphones', 2, 3000.00, '2025-01-06'),
