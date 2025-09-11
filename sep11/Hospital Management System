@@ -1,0 +1,70 @@
+use hospitalDB
+
+db.patients.insertMany([
+{ _id: 1, name: "Arjun Mehta", age: 34, gender: "Male", city: "Bangalore" },
+{ _id: 2, name: "Neha Kapoor", age: 29, gender: "Female", city: "Delhi" },
+{ _id: 3, name: "Ravi Sharma", age: 45, gender: "Male", city: "Hyderabad" },
+{ _id: 4, name: "Priya Singh", age: 38, gender: "Female", city: "Chennai" }
+])
+
+db.doctors.insertMany([
+{ _id: 101, name: "Dr. Ramesh", specialization: "Cardiology", experience: 15 },
+{ _id: 102, name: "Dr. Sneha", specialization: "Dermatology", experience: 8 },
+{ _id: 103, name: "Dr. Amit", specialization: "Neurology", experience: 12 },
+{ _id: 104, name: "Dr. Pooja", specialization: "Orthopedics", experience: 10 }
+])
+
+db.appointments.insertMany([
+{ patient_id: 1, doctor_id: 101, date: ISODate("2025-01-05"), status: "Completed", fee: 2000 },
+{ patient_id: 2, doctor_id: 102, date: ISODate("2025-01-06"), status: "Completed", fee: 1500 },
+{ patient_id: 3, doctor_id: 103, date: ISODate("2025-01-07"), status: "Scheduled", fee: 2500 },
+{ patient_id: 4, doctor_id: 104, date: ISODate("2025-01-08"), status: "Completed", fee: 1800 },
+{ patient_id: 1, doctor_id: 104, date: ISODate("2025-01-10"), status: "Completed", fee: 2200 }
+])
+
+db.patients.insertOne({ _id: 5, name: "Meera Nair", age: 31, gender: "Female", city: "Mumbai" })
+
+db.doctors.find({ specialization: "Cardiology" })
+
+db.patients.updateOne({ name: "Ravi Sharma" }, { $set: { city: "Pune" } })
+
+db.appointments.deleteOne({ status: "Completed" })
+
+db.patients.createIndex({ city: 1 })
+
+db.doctors.createIndex({ specialization: 1, experience: -1 })
+
+db.doctors.getIndexes()
+
+db.doctors.find({ specialization: "Cardiology" }).sort({ experience: -1 })
+
+db.doctors.find({ name: /Dr/ })
+
+db.appointments.aggregate([
+  { $group: { _id: "$doctor_id", totalAppointments: { $sum: 1 } } }
+])
+
+db.appointments.aggregate([
+  { $group: { _id: "$doctor_id", totalFees: { $sum: "$fee" } } }
+])
+
+db.patients.aggregate([
+  { $group: { _id: "$city", avgAge: { $avg: "$age" } } }
+])
+
+db.appointments.aggregate([
+  { $lookup: { from: "patients", localField: "patient_id", foreignField: "_id", as: "patientInfo" }},
+  { $lookup: { from: "doctors", localField: "doctor_id", foreignField: "_id", as: "doctorInfo" }}
+])
+
+db.appointments.aggregate([
+  { $group: { _id: "$doctor_id", patientCount: { $addToSet: "$patient_id" } } },
+  { $project: { doctor_id: "$_id", patientCount: { $size: "$patientCount" } } },
+  { $match: { patientCount: { $gt: 1 } } }
+])
+
+db.appointments.aggregate([
+  { $group: { _id: "$patient_id", totalSpent: { $sum: "$fee" } } },
+  { $match: { totalSpent: { $gt: 3000 } } },
+  { $lookup: { from: "patients", localField: "_id", foreignField: "_id", as: "patientInfo" } }
+])
