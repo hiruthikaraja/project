@@ -1,1 +1,273 @@
+DROP DATABASE IF EXISTS inventoryDB;
+CREATE DATABASE inventoryDB;
+USE inventoryDB;
+
+ Table: suppliers
+
+CREATE TABLE suppliers (
+  supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+  supplier_name VARCHAR(150) NOT NULL,
+  contact_person VARCHAR(100),
+  phone_number VARCHAR(20),
+  email VARCHAR(150),
+  address TEXT,
+  gst_number VARCHAR(30),
+  bank_account VARCHAR(50),
+  ifsc_code VARCHAR(20),
+  rating DECIMAL(3,2),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 20 suppliers
+INSERT INTO suppliers (supplier_name, contact_person, phone_number, email, address, gst_number, bank_account, ifsc_code, rating) VALUES
+('Alpha Traders','Ramesh','9876543210','alpha@sup.com','Chennai','GSTIN001','ACC1001','IFSC0001',4.50),
+('Beta Supplies','Suresh','9988776655','beta@sup.com','Bangalore','GSTIN002','ACC1002','IFSC0002',4.30),
+('Gamma Distributors','Meena','8877665544','gamma@sup.com','Hyderabad','GSTIN003','ACC1003','IFSC0003',4.10),
+('Delta Corp','Karthik','7766554433','delta@sup.com','Mumbai','GSTIN004','ACC1004','IFSC0004',4.20),
+('Epsilon Pvt Ltd','Anu','6677889900','epsilon@sup.com','Delhi','GSTIN005','ACC1005','IFSC0005',4.00),
+('Zeta Impex','Rahul','9123456780','zeta@sup.com','Pune','GSTIN006','ACC1006','IFSC0006',4.15),
+('Omega Wholesale','Priya','9234567890','omega@sup.com','Kolkata','GSTIN007','ACC1007','IFSC0007',3.95),
+('Sigma Mart','Vijay','9345678901','sigma@sup.com','Cochin','GSTIN008','ACC1008','IFSC0008',4.05),
+('Theta Global','Arjun','9456789012','theta@sup.com','Jaipur','GSTIN009','ACC1009','IFSC0009',4.25),
+('Lambda Retail','Deepa','9567890123','lambda@sup.com','Lucknow','GSTIN010','ACC1010','IFSC0010',4.40),
+('Kappa Traders','Nitin','9678901234','kappa@sup.com','Surat','GSTIN011','ACC1011','IFSC0011',3.90),
+('Mu Supplies','Riya','9789012345','mu@sup.com','Vadodara','GSTIN012','ACC1012','IFSC0012',4.00),
+('Nu Distributors','Sunil','9890123456','nu@sup.com','Indore','GSTIN013','ACC1013','IFSC0013',3.85),
+('Xi Corp','Rohit','9901234567','xi@sup.com','Bhopal','GSTIN014','ACC1014','IFSC0014',4.10),
+('Omicron Ltd','Kavya','9912345678','omicron@sup.com','Vishakhapatnam','GSTIN015','ACC1015','IFSC0015',4.35),
+('Pi Enterprises','Shreya','9923456789','pi@sup.com','Mysore','GSTIN016','ACC1016','IFSC0016',3.80),
+('Rho Global','Manu','9934567890','rho@sup.com','Kochi','GSTIN017','ACC1017','IFSC0017',4.00),
+('Tau Traders','Isha','9945678901','tau@sup.com','Nagpur','GSTIN018','ACC1018','IFSC0018',4.12),
+('Upsilon Inc','Girish','9956789012','upsilon@sup.com','Agra','GSTIN019','ACC1019','IFSC0019',3.88),
+('Phi Logistics','Asha','9967890123','phi@sup.com','Bikaner','GSTIN020','ACC1020','IFSC0020',4.22);
+
+ Table: warehouses
+
+CREATE TABLE warehouses (
+  warehouse_id INT AUTO_INCREMENT PRIMARY KEY,
+  warehouse_name VARCHAR(150) NOT NULL,
+  location VARCHAR(150),
+  capacity INT,
+  current_utilization INT,
+  manager_name VARCHAR(100),
+  phone_number VARCHAR(20),
+  email VARCHAR(150),
+  operating_hours VARCHAR(100),
+  established_year INT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO warehouses (warehouse_name, location, capacity, current_utilization, manager_name, phone_number, email, operating_hours, established_year) VALUES
+('Central WH','Chennai',10000,6200,'Aravind','9876512340','central@wh.com','9AM-9PM',2005),
+('South WH','Bangalore',9000,4500,'Divya','9876523451','south@wh.com','9AM-8PM',2010),
+('North WH','Delhi',12000,8000,'Ravi','9876534562','north@wh.com','8AM-8PM',2008),
+('East WH','Kolkata',8000,3900,'Sanjay','9876545673','east@wh.com','9AM-9PM',2012),
+('West WH','Mumbai',15000,9000,'Priya','9876556784','west@wh.com','8AM-10PM',2003),
+('Pune WH','Pune',7000,3500,'Rahul','9876567895','pune@wh.com','9AM-6PM',2015),
+('Hyderabad WH','Hyderabad',7500,4200,'Meena','9876578906','hyd@wh.com','9AM-6PM',2018),
+('Lucknow WH','Lucknow',6000,2700,'Deepa','9876589017','lucknow@wh.com','10AM-7PM',2016),
+('Jaipur WH','Jaipur',6500,3000,'Arjun','9876590128','jaipur@wh.com','9AM-5PM',2019),
+('Bhopal WH','Bhopal',5000,2200,'Karan','9876601239','bhopal@wh.com','9AM-6PM',2014),
+('Indore WH','Indore',4800,2100,'Sunil','9876612340','indore@wh.com','9AM-5PM',2017),
+('Surat WH','Surat',5200,2600,'Nitin','9876623451','surat@wh.com','9AM-6PM',2013),
+('Vadodara WH','Vadodara',4500,2000,'Riya','9876634562','vadodara@wh.com','9AM-5PM',2015),
+('Cochin WH','Cochin',4300,1800,'Manu','9876645673','cochin@wh.com','9AM-6PM',2011),
+('Mysore WH','Mysore',4100,1600,'Kavya','9876656784','mysore@wh.com','9AM-5PM',2016),
+('Vizag WH','Vishakhapatnam',4700,2300,'Kumar','9876667895','vizag@wh.com','10AM-7PM',2018),
+('Agra WH','Agra',3900,1500,'Girish','9876678906','agra@wh.com','9AM-6PM',2014),
+('Nagpur WH','Nagpur',4000,1700,'Isha','9876689017','nagpur@wh.com','9AM-5PM',2012),
+('Bikaner WH','Bikaner',3600,1400,'Asha','9876690128','bikaner@wh.com','9AM-5PM',2019),
+('Cuttack WH','Cuttack',3400,1200,'Rohan','9876701239','cuttack@wh.com','9AM-5PM',2017);
+
+
+ Table: products
+
+CREATE TABLE products (
+  product_id INT AUTO_INCREMENT PRIMARY KEY,
+  product_name VARCHAR(150) NOT NULL,
+  category VARCHAR(80),
+  brand VARCHAR(80),
+  unit_price DECIMAL(12,2),
+  stock_quantity INT,
+  reorder_level INT,
+  supplier_id INT,
+  sku VARCHAR(50),
+  weight_kg DECIMAL(6,2),
+  dimensions VARCHAR(50),
+  warranty_months INT,
+  manufacturing_date DATE,
+  expiry_date DATE,
+  description TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
+);
+
+
+INSERT INTO products (product_name, category, brand, unit_price, stock_quantity, reorder_level, supplier_id, sku, weight_kg, dimensions, warranty_months, manufacturing_date, expiry_date, description) VALUES
+('Laptop Pro X','Electronics','BrandX',75000,120,20,1,'LPX-1001',2.50,'35x24x2',24,'2024-01-01',NULL,'High-performance laptop for professionals'),
+('Laptop Gamer Y','Electronics','BrandY',85000,80,15,2,'LGY-2001',3.00,'38x26x3',12,'2024-03-01',NULL,'Gaming laptop with dedicated GPU'),
+('Wireless Mouse Z','Accessories','BrandA',799,400,60,3,'WMZ-3001',0.09,'11x6x3',12,'2024-05-10',NULL,'Ergonomic wireless mouse'),
+('Mechanical Keyboard K1','Accessories','BrandB',2499,220,40,4,'MK1-4001',0.80,'45x15x4',18,'2024-02-12',NULL,'Backlit mechanical keyboard'),
+('24inch Monitor M24','Electronics','BrandZ',12000,150,30,5,'MON24-5001',4.50,'54x33x6',36,'2023-11-05',NULL,'Full HD monitor'),
+('Ergo Chair Plus','Furniture','BrandF',7999,70,10,6,'ECP-6001',15.00,'120x60x60',24,'2023-07-20',NULL,'Ergonomic office chair'),
+('Office Desk D120','Furniture','BrandF',12999,50,8,7,'ODD-7001',40.00,'150x75x75',60,'2023-06-15',NULL,'Large wooden desk'),
+('Laser Printer L200','Electronics','BrandX',18999,35,6,8,'LPR-8001',8.50,'45x40x30',12,'2023-12-01',NULL,'High-speed laser printer'),
+('DualBand Router R2','Networking','BrandN',3499,180,30,9,'RTR-9001',0.45,'20x13x3',24,'2024-04-01',NULL,'Dual-band WiFi router'),
+('24port Switch S24','Networking','BrandN',5499,95,20,10,'S24-1001',1.25,'30x20x5',36,'2023-10-11',NULL,'24-port network switch'),
+('HDMI Cable 2m','Accessories','BrandA',299,600,120,11,'HDM2-1101',0.12,'200x2x1',0,'2025-01-10',NULL,'High-speed HDMI cable 2m'),
+('USB Cable 1m','Accessories','BrandA',199,700,150,12,'USBC-1201',0.05,'100x1x1',0,'2025-02-05',NULL,'USB-A to USB-C cable'),
+('1TB SSD','Storage','BrandS',8999,65,12,13,'SSD1T-1301',0.06,'10x7x1',60,'2024-09-01',NULL,'Fast NVMe SSD 1TB'),
+('2TB HDD','Storage','BrandS',4999,80,15,14,'HDD2T-1401',0.45,'12x9x3',24,'2023-08-01',NULL,'Reliable 2TB HDD'),
+('32GB Pendrive','Storage','BrandS',1299,320,80,15,'PD32-1501',0.02,'6x2x1',12,'2024-11-01',NULL,'USB 3.0 32GB pen drive'),
+('HD Projector P300','Electronics','BrandP',32999,18,5,16,'PRJ-1601',5.50,'30x25x12',24,'2023-03-05',NULL,'Portable HD projector'),
+('Document Scanner S50','Electronics','BrandX',13999,28,6,17,'SCN-1701',3.60,'35x25x10',12,'2023-09-01',NULL,'Fast document scanner'),
+('600VA UPS','Power','BrandU',4499,45,8,18,'UPS600-1801',7.50,'30x20x20',12,'2024-01-15',NULL,'Backup UPS 600VA'),
+('Ceiling Fan 56in','Appliances','BrandF',2499,110,20,19,'FAN56-1901',6.00,'140x140x20',24,'2024-03-10',NULL,'Energy efficient ceiling fan'),
+('1.5T Split AC','Appliances','BrandA',35999,12,3,20,'AC15-2001',30.00,'100x50x30',60,'2023-05-20',NULL,'1.5 ton inverter split AC');
+
+
+ Table: stock_movements
+
+CREATE TABLE stock_movements (
+  movement_id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT,
+  warehouse_id INT,
+  quantity INT,
+  movement_type ENUM('IN','OUT','ADJUST'),
+  movement_date DATE,
+  reason VARCHAR(255),
+  handled_by VARCHAR(100),
+  verified_by VARCHAR(100),
+  reference_invoice VARCHAR(50),
+  FOREIGN KEY (product_id) REFERENCES products(product_id),
+  FOREIGN KEY (warehouse_id) REFERENCES warehouses(warehouse_id)
+);
+
+INSERT INTO stock_movements (product_id, warehouse_id, quantity, movement_type, movement_date, reason, handled_by, verified_by, reference_invoice) VALUES
+(1,1,50,'IN','2025-01-10','Initial stock','Aravind','Ravi','INV001'),
+(1,1,10,'OUT','2025-02-12','Order #A100','Aravind','Ravi','INV002'),
+(2,2,30,'IN','2025-02-01','New batch','Divya','Priya','INV003'),
+(3,3,200,'IN','2025-03-05','Restock','Ravi','Aravind','INV004'),
+(4,4,80,'IN','2025-03-07','Restock','Sanjay','Ravi','INV005'),
+(5,5,20,'IN','2025-03-10','Initial stock','Priya','Aravind','INV006'),
+(6,6,40,'IN','2025-04-01','Bulk order','Rahul','Divya','INV007'),
+(7,7,15,'OUT','2025-04-03','Sample use','Divya','Priya','INV008'),
+(8,8,25,'IN','2025-04-10','New stock','Ravi','Sanjay','INV009'),
+(9,9,100,'IN','2025-04-12','Restock','Sanjay','Ravi','INV010'),
+(10,10,25,'OUT','2025-04-15','Order #B110','Priya','Aravind','INV011'),
+(11,11,180,'IN','2025-05-01','New stock','Aravind','Ravi','INV012'),
+(12,12,220,'IN','2025-05-02','Restock','Divya','Priya','INV013'),
+(13,13,12,'OUT','2025-05-05','Order #C130','Ravi','Sanjay','INV014'),
+(14,14,18,'IN','2025-05-10','Initial stock','Sanjay','Aravind','INV015'),
+(15,15,60,'IN','2025-05-15','Bulk restock','Priya','Divya','INV016'),
+(16,16,6,'OUT','2025-05-18','Demo unit','Aravind','Ravi','INV017'),
+(17,17,20,'IN','2025-05-20','New batch','Divya','Priya','INV018'),
+(18,18,30,'IN','2025-05-22','Restock','Ravi','Sanjay','INV019'),
+(19,19,45,'OUT','2025-05-25','Returned to supplier','Sanjay','Aravind','INV020');
+
+
+ CRUD Example Queries
+
+
+READ: view products
+SELECT product_id, product_name, category, stock_quantity FROM products ORDER BY product_id LIMIT 20;
+
+READ: stock movements for product 1
+SELECT * FROM stock_movements WHERE product_id = 1 ORDER BY movement_date DESC;
+
+CREATE: add a new product
+INSERT INTO products (product_name, category, brand, unit_price, stock_quantity, reorder_level, supplier_id, sku, weight_kg, dimensions, warranty_months, manufacturing_date, description)
+VALUES ('Webcam HD','Accessories','BrandX',2499,75,10,1,'WC-HD-210',0.15,'8x5x4',12,'2025-02-01','HD webcam with mic');
+
+UPDATE: increase stock of product_id 1 by 20
+UPDATE products SET stock_quantity = stock_quantity + 20 WHERE product_id = 1;
+
+DELETE: delete a stock movement (example)
+DELETE FROM stock_movements WHERE movement_id = 19;
+
+ Stored Procedures (5)
+
+
+DELIMITER //
+ 1) GetLowStock: products below reorder_level
+CREATE PROCEDURE GetLowStock()
+BEGIN
+  SELECT product_id, product_name, stock_quantity, reorder_level
+  FROM products
+  WHERE stock_quantity < reorder_level
+  ORDER BY (reorder_level - stock_quantity) DESC;
+END //
+DELIMITER ;
+
+DELIMITER //
+2) GetWarehouseStock: aggregate quantities per product for a warehouse
+CREATE PROCEDURE GetWarehouseStock(IN wid INT)
+BEGIN
+  SELECT w.warehouse_name, p.product_id, p.product_name, SUM(
+      CASE WHEN sm.movement_type='IN' THEN sm.quantity
+           WHEN sm.movement_type='OUT' THEN -sm.quantity
+           ELSE sm.quantity END
+    ) AS net_quantity
+  FROM stock_movements sm
+  JOIN products p ON sm.product_id = p.product_id
+  JOIN warehouses w ON sm.warehouse_id = w.warehouse_id
+  WHERE w.warehouse_id = wid
+  GROUP BY p.product_id, p.product_name, w.warehouse_name
+  ORDER BY net_quantity DESC;
+END //
+DELIMITER ;
+
+DELIMITER //
+3) GetProductHistory: movements for a product
+CREATE PROCEDURE GetProductHistory(IN pid INT)
+BEGIN
+  SELECT sm.movement_date, sm.movement_type, sm.quantity, sm.reason, sm.handled_by, sm.verified_by, sm.reference_invoice
+  FROM stock_movements sm
+  WHERE sm.product_id = pid
+  ORDER BY sm.movement_date DESC;
+END //
+DELIMITER ;
+
+DELIMITER //
+4) GetSupplierContribution: number of products & total stock for a supplier
+CREATE PROCEDURE GetSupplierContribution(IN sid INT)
+BEGIN
+  SELECT s.supplier_name, COUNT(p.product_id) AS product_count, COALESCE(SUM(p.stock_quantity),0) AS total_stock
+  FROM suppliers s
+  LEFT JOIN products p ON p.supplier_id = s.supplier_id
+  WHERE s.supplier_id = sid
+  GROUP BY s.supplier_name;
+END //
+DELIMITER ;
+
+DELIMITER //
+5) GetReorderList: products that need reorder (<= reorder_level)
+CREATE PROCEDURE GetReorderList()
+BEGIN
+  SELECT product_id, product_name, stock_quantity, reorder_level
+  FROM products
+  WHERE stock_quantity <= reorder_level
+  ORDER BY stock_quantity ASC;
+END //
+DELIMITER ;
+
+
+ Example calls to procedures
+
+ CALL GetLowStock();
+ CALL GetWarehouseStock(1);
+ CALL GetProductHistory(1);
+ CALL GetSupplierContribution(1);
+ CALL GetReorderList();
+
+
+ Indexes (5 examples)
+
+CREATE INDEX idx_products_name ON products(product_name);
+CREATE INDEX idx_products_supplier ON products(supplier_id);
+CREATE INDEX idx_warehouses_location ON warehouses(location);
+CREATE INDEX idx_stockmov_product ON stock_movements(product_id);
+CREATE INDEX idx_stockmov_warehouse ON stock_movements(warehouse_id);
+
 
