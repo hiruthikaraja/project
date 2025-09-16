@@ -1,0 +1,87 @@
+// 1. Switch to database
+use retailDB
+
+// 2. Insert sample campaign feedback
+db.campaignFeedback.insertMany([
+  { campaign_id: 1, store_id: 1, product_name: "Laptop", campaign_name: "Diwali Sale", feedback: "Huge customer turnout, sales boosted", rating: 5 },
+  { campaign_id: 2, store_id: 2, product_name: "Headphones", campaign_name: "New Year Sale", feedback: "Average participation, need better marketing", rating: 3 },
+  { campaign_id: 3, store_id: 3, product_name: "Shirt", campaign_name: "Summer Bonanza", feedback: "Loved by young crowd", rating: 4 },
+  { campaign_id: 4, store_id: 4, product_name: "Shoes", campaign_name: "Christmas Sale", feedback: "Great response, huge crowd", rating: 5 },
+  { campaign_id: 5, store_id: 5, product_name: "Smartphone", campaign_name: "Independence Day Offer", feedback: "Low participation", rating: 2 }
+])
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("652f1f1f9b1f1f1f1f1f1f01"),
+    '1': ObjectId("652f1f1f9b1f1f1f1f1f1f02"),
+    '2': ObjectId("652f1f1f9b1f1f1f1f1f1f03"),
+    '3': ObjectId("652f1f1f9b1f1f1f1f1f1f04"),
+    '4': ObjectId("652f1f1f9b1f1f1f1f1f1f05")
+  }
+}
+
+// 3. Read all feedback
+db.campaignFeedback.find().pretty()
+
+{
+  "_id" : ObjectId("652f1f1f9b1f1f1f1f1f1f01"),
+  "campaign_id" : 1,
+  "store_id" : 1,
+  "product_name" : "Laptop",
+  "campaign_name" : "Diwali Sale",
+  "feedback" : "Huge customer turnout, sales boosted",
+  "rating" : 5
+}
+{
+  "_id" : ObjectId("652f1f1f9b1f1f1f1f1f1f02"),
+  "campaign_id" : 2,
+  "store_id" : 2,
+  "product_name" : "Headphones",
+  "campaign_name" : "New Year Sale",
+  "feedback" : "Average participation, need better marketing",
+  "rating" : 3
+}
+// ... similar output for other documents
+
+
+// 4. Read feedback for a specific product
+db.campaignFeedback.find({ product_name: "Laptop" }).pretty()
+
+
+{
+  "_id" : ObjectId("652f1f1f9b1f1f1f1f1f1f01"),
+  "campaign_id" : 1,
+  "store_id" : 1,
+  "product_name" : "Laptop",
+  "campaign_name" : "Diwali Sale",
+  "feedback" : "Huge customer turnout, sales boosted",
+  "rating" : 5
+}
+
+// 5. Update a campaign feedback
+db.campaignFeedback.updateOne(
+  { campaign_id: 2 },
+  { $set: { feedback: "Better participation after email campaign", rating: 4 } }
+)
+
+{ acknowledged: true, matchedCount: 1, modifiedCount: 1 }
+
+// 6. Delete a campaign feedback
+db.campaignFeedback.deleteOne({ campaign_id: 5 })
+
+{ acknowledged: true, deletedCount: 1 }
+
+// 7. Create Indexes
+db.campaignFeedback.createIndex({ product_name: 1 })
+
+"product_name_1"
+db.campaignFeedback.createIndex({ store_id: 1 })
+
+"store_id_1"
+db.campaignFeedback.createIndex({ feedback: "text" })
+
+"feedback_text"
+db.campaignFeedback.createIndex({ store_id: 1, product_name: 1 })
+
+"store_id_1_product_name_1"
