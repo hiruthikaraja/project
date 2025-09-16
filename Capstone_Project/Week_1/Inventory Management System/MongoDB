@@ -1,1 +1,91 @@
+use inventoryDB
+// PRODUCTS
+db.products.insertMany([
+  {product_id: 101, name: "Laptop", category: "Electronics", price: 55000, stock_qty: 35, reorder_level: 10, supplier_id: 1, warehouse_id: 1},
+  {product_id: 102, name: "Mouse", category: "Electronics", price: 500, stock_qty: 200, reorder_level: 30, supplier_id: 2, warehouse_id: 1},
+  {product_id: 103, name: "Keyboard", category: "Electronics", price: 1200, stock_qty: 180, reorder_level: 20, supplier_id: 2, warehouse_id: 2},
+  {product_id: 104, name: "Monitor", category: "Electronics", price: 12000, stock_qty: 20, reorder_level: 5, supplier_id: 3, warehouse_id: 2},
+  {product_id: 105, name: "Desk Chair", category: "Furniture", price: 3500, stock_qty: 60, reorder_level: 15, supplier_id: 4, warehouse_id: 3},
+  {product_id: 106, name: "Notebook", category: "Stationery", price: 50, stock_qty: 500, reorder_level: 100, supplier_id: 5, warehouse_id: 3},
+  {product_id: 107, name: "Pen", category: "Stationery", price: 15, stock_qty: 800, reorder_level: 200, supplier_id: 5, warehouse_id: 4},
+  {product_id: 108, name: "Tablet", category: "Electronics", price: 25000, stock_qty: 15, reorder_level: 5, supplier_id: 1, warehouse_id: 1},
+  {product_id: 109, name: "Printer", category: "Electronics", price: 15000, stock_qty: 25, reorder_level: 8, supplier_id: 3, warehouse_id: 2},
+  {product_id: 110, name: "Desk", category: "Furniture", price: 4500, stock_qty: 45, reorder_level: 10, supplier_id: 4, warehouse_id: 3}
+]);
+
+// WAREHOUSES
+db.warehouses.insertMany([
+  {warehouse_id: 1, name: "Central WH", location: "Chennai", capacity: 1000},
+  {warehouse_id: 2, name: "North WH", location: "Delhi", capacity: 800},
+  {warehouse_id: 3, name: "South WH", location: "Bangalore", capacity: 900},
+  {warehouse_id: 4, name: "West WH", location: "Mumbai", capacity: 700}
+]);
+
+// SUPPLIERS
+db.suppliers.insertMany([
+  {supplier_id: 1, name: "TechSource", contact: "Rajesh", phone: "9876543210", email: "tech@source.com"},
+  {supplier_id: 2, name: "Peripherals Ltd", contact: "Mani", phone: "9876543211", email: "periph@pl.com"},
+  {supplier_id: 3, name: "DisplayWorld", contact: "Vijay", phone: "9876543212", email: "dis@world.com"},
+  {supplier_id: 4, name: "FurniCo", contact: "Ramesh", phone: "9876543213", email: "furni@co.com"},
+  {supplier_id: 5, name: "StationeryHub", contact: "Sita", phone: "9876543214", email: "station@hub.com"}
+]);
+
+// STOCK MOVEMENTS (Audit logs)
+db.stock_movements.insertMany([
+  {movement_id: 1, product_id: 101, qty: 10, type: "IN", date: new Date(), reason: "New Stock"},
+  {movement_id: 2, product_id: 101, qty: 5, type: "OUT", date: new Date(), reason: "Sales"},
+  {movement_id: 3, product_id: 102, qty: 50, type: "IN", date: new Date(), reason: "Restock"},
+  {movement_id: 4, product_id: 102, qty: 20, type: "OUT", date: new Date(), reason: "Sales"},
+  {movement_id: 5, product_id: 103, qty: 30, type: "IN", date: new Date(), reason: "New Stock"}
+]);
+
+// CREATE
+db.products.insertOne({product_id: 111, name: "Scanner", category: "Electronics", price: 18000, stock_qty: 10, reorder_level: 3, supplier_id: 3, warehouse_id: 2});
+
+// READ
+db.products.find({category: "Electronics"});
+
+// UPDATE
+db.products.updateOne({product_id: 101}, {$set: {stock_qty: 40}});
+
+// DELETE
+db.products.deleteOne({product_id: 111});
+
+// Find understocked products (below reorder level)
+db.products.find({$expr: {$lt: ["$stock_qty", "$reorder_level"]}});
+
+// Join-like lookup: Products with supplier details
+db.products.aggregate([
+  {
+    $lookup: {
+      from: "suppliers",
+      localField: "supplier_id",
+      foreignField: "supplier_id",
+      as: "supplier_info"
+    }
+  }
+]);
+
+// Total stock value by category
+db.products.aggregate([
+  {$group: {_id: "$category", total_value: {$sum: {$multiply:["$price","$stock_qty"]}}}}
+]);
+
+db.products.createIndex({product_id: 1});
+db.products.createIndex({name: 1});
+db.products.createIndex({category: 1});
+db.warehouses.createIndex({location: 1});
+db.suppliers.createIndex({name: 1});
+
+{
+  "_id": ObjectId("..."),
+  "product_id": 101,
+  "name": "Laptop",
+  "category": "Electronics",
+  "price": 55000,
+  "stock_qty": 35,
+  "reorder_level": 10,
+  "supplier_id": 1,
+  "warehouse_id": 1
+}
 
