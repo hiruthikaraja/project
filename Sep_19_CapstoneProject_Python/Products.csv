@@ -1,0 +1,11 @@
+id,name,category,price,stock
+1,Laptop,Electronics,55000,10
+2,Mobile Phone,Electronics,25000,25
+3,Chair,Furniture,5000,50
+4,Book,Stationery,300,100
+5,Headphones,Electronics,3000,15
+6,Desk,Furniture,8000,20
+7,Notebook,Stationery,100,200
+8,Smartwatch,Electronics,12000,12
+9,Pen,Stationery,20,500
+10,Lamp,Furniture,1500,30
