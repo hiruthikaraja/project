@@ -1,1 +1,12 @@
+product_id,product_name,category,brand,price,stock_quantity
+1,Laptop,Electronics,Dell,55000,30
+2,Headphones,Electronics,Sony,2500,100
+3,Shirt,Clothing,Zara,1500,50
+4,Shoes,Footwear,Nike,3000,40
+5,Smartphone,Electronics,Samsung,35000,25
+6,Tablet,Electronics,Apple,45000,15
+7,Jacket,Clothing,Adidas,4000,20
+8,Watch,Accessories,Fossil,12000,35
+9,TV,Electronics,LG,65000,10
+10,Keyboard,Electronics,Logitech,1500,80
 
