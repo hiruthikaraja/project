@@ -200,7 +200,7 @@
         "\n",
         "# Plot bar chart\n",
         "avg_marks.plot(kind=\"bar\", color=\"skyblue\", edgecolor=\"black\")\n",
-        "plt.title(\"Average Marks by Course - Yokesh\" )\n",
+        "plt.title(\"Average Marks by Course - Hiruthika\" )\n",
         "plt. xlabel (\"Course\")\n",
         "plt.ylabel (\"Average Marks\")\n",
         "plt.xticks(rotation=45)\n",
