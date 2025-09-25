@@ -1,7 +1,14 @@
-CREATE DATABASE retailDB;
+-- -------------------------------
+-- Week 1: Retail Dashboard SQL
+-- -------------------------------
+
+CREATE DATABASE IF NOT EXISTS retailDB;
 USE retailDB;
 
-CREATE TABLE products (
+-- -------------------------------
+-- Table: products
+-- -------------------------------
+CREATE TABLE IF NOT EXISTS products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(100),
     category VARCHAR(50),
@@ -9,38 +16,6 @@ CREATE TABLE products (
     price DECIMAL(10,2),
     stock_quantity INT
 );
-
-CREATE TABLE stores (
-    store_id INT AUTO_INCREMENT PRIMARY KEY,
-    store_name VARCHAR(100),
-    region VARCHAR(50),
-    city VARCHAR(50),
-    manager_name VARCHAR(100)
-);
-
-CREATE TABLE employees (
-    employee_id INT AUTO_INCREMENT PRIMARY KEY,
-    employee_name VARCHAR(100),
-    position VARCHAR(50),
-    salary DECIMAL(10,2),
-    hire_date DATE,
-    store_id INT,
-    FOREIGN KEY (store_id) REFERENCES stores(store_id)
-);
-
-CREATE TABLE sales (
-    sale_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    store_id INT,
-    employee_id INT,
-    sale_date DATE,
-    quantity INT,
-    total_amount DECIMAL(10,2),
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (store_id) REFERENCES stores(store_id),
-    FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
-);
-
 
 INSERT INTO products (product_name, category, brand, price, stock_quantity) VALUES
 ('Laptop','Electronics','Dell',55000,30),
@@ -52,7 +27,28 @@ INSERT INTO products (product_name, category, brand, price, stock_quantity) VALU
 ('Jacket','Clothing','Adidas',4000,20),
 ('Watch','Accessories','Fossil',12000,35),
 ('TV','Electronics','LG',65000,10),
-('Keyboard','Electronics','Logitech',1500,80);
+('Keyboard','Electronics','Logitech',1500,80),
+('Socks','Clothing','H&M',300,150),
+('Bag','Accessories','Gucci',25000,10),
+('Sunglasses','Accessories','RayBan',8000,25),
+('Printer','Electronics','HP',12000,18),
+('Mouse','Electronics','Logitech',1200,50),
+('Belt','Clothing','Levis',2000,40),
+('Monitor','Electronics','Samsung',18000,12),
+('Camera','Electronics','Canon',55000,8),
+('Perfume','Accessories','Dior',7500,20),
+('Chair','Furniture','Ikea',5000,15);
+
+-- -------------------------------
+-- Table: stores
+-- -------------------------------
+CREATE TABLE IF NOT EXISTS stores (
+    store_id INT AUTO_INCREMENT PRIMARY KEY,
+    store_name VARCHAR(100),
+    region VARCHAR(50),
+    city VARCHAR(50),
+    manager_name VARCHAR(100)
+);
 
 INSERT INTO stores (store_name, region, city, manager_name) VALUES
 ('Store A','North','Delhi','Rajesh Mehta'),
@@ -66,6 +62,19 @@ INSERT INTO stores (store_name, region, city, manager_name) VALUES
 ('Store I','West','Pune','Sonal Patel'),
 ('Store J','North','Lucknow','Anjali Gupta');
 
+-- -------------------------------
+-- Table: employees
+-- -------------------------------
+CREATE TABLE IF NOT EXISTS employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_name VARCHAR(100),
+    position VARCHAR(50),
+    salary DECIMAL(10,2),
+    hire_date DATE,
+    store_id INT,
+    FOREIGN KEY (store_id) REFERENCES stores(store_id)
+);
+
 INSERT INTO employees (employee_name, position, salary, hire_date, store_id) VALUES
 ('Rajesh Kumar','Sales Associate',25000,'2020-05-12',1),
 ('Neha Sharma','Manager',50000,'2018-03-20',1),
@@ -76,7 +85,33 @@ INSERT INTO employees (employee_name, position, salary, hire_date, store_id) VAL
 ('Deepak Joshi','Cashier',21000,'2022-06-05',4),
 ('Ravi Das','Sales Associate',24000,'2020-10-08',4),
 ('Anjali Gupta','Manager',51000,'2017-05-30',5),
-('Arjun Roy','Cashier',20000,'2022-04-12',5);
+('Arjun Roy','Cashier',20000,'2022-04-12',5),
+('Kavya Iyer','Sales Associate',23000,'2021-07-10',6),
+('Rohit Sharma','Manager',48000,'2019-03-15',6),
+('Manu Singh','Cashier',21000,'2020-11-01',7),
+('Isha Patel','Sales Associate',22000,'2021-08-20',7),
+('Girish Kumar','Manager',50000,'2018-12-05',8),
+('Asha Rani','Cashier',20000,'2022-01-18',8),
+('Deepa Sharma','Sales Associate',23000,'2021-06-22',9),
+('Aravind Rao','Manager',51000,'2017-09-12',9),
+('Sanjay Verma','Cashier',20000,'2022-05-07',10),
+('Riya Kapoor','Sales Associate',22000,'2021-03-14',10);
+
+-- -------------------------------
+-- Table: sales
+-- -------------------------------
+CREATE TABLE IF NOT EXISTS sales (
+    sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    store_id INT,
+    employee_id INT,
+    sale_date DATE,
+    quantity INT,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (store_id) REFERENCES stores(store_id),
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
 
 INSERT INTO sales (product_id, store_id, employee_id, sale_date, quantity, total_amount) VALUES
 (1,1,1,'2025-09-01',2,110000),
@@ -88,48 +123,21 @@ INSERT INTO sales (product_id, store_id, employee_id, sale_date, quantity, total
 (7,4,7,'2025-09-04',3,12000),
 (8,4,8,'2025-09-04',1,12000),
 (9,5,9,'2025-09-05',1,65000),
-(10,5,10,'2025-09-05',4,6000);
+(10,5,10,'2025-09-05',4,6000),
+(11,6,11,'2025-09-06',2,90000),
+(12,6,12,'2025-09-06',1,48000),
+(13,7,13,'2025-09-07',3,12000),
+(14,7,14,'2025-09-07',2,4000),
+(15,8,15,'2025-09-08',1,12000),
+(16,8,16,'2025-09-08',2,4000),
+(17,9,17,'2025-09-09',1,65000),
+(18,9,18,'2025-09-09',1,55000),
+(19,10,19,'2025-09-10',2,3000),
+(20,10,20,'2025-09-10',1,1500);
 
-//Insert sales data with CRUD operations
-USE retailDB;
-
-//CREATE (Insert new sale)
-
-INSERT INTO sales (product_id, store_id, employee_id, sale_date, quantity, total_amount)
-VALUES (2, 2, 4, '2025-09-06', 3, 7500);
-
-//READ (Select all sales)
-
-SELECT * FROM sales;
-
-//READ (Sales for a specific store)
-SELECT * FROM sales WHERE store_id = 1;
-
-//READ (Sales in a date range)
-SELECT * FROM sales 
-WHERE sale_date BETWEEN '2025-09-01' AND '2025-09-05';
-
-// UPDATE (Correct total_amount for a sale)
-
-UPDATE sales
-SET total_amount = 8000
-WHERE sale_id = 3;
-
-//UPDATE (Change quantity sold)
-
-UPDATE sales
-SET quantity = 5, total_amount = 12500
-WHERE sale_id = 2;
-
-//DELETE (Cancel a sale record)
-
-DELETE FROM sales
-WHERE sale_id = 10;
-
-//DELETE (Remove all sales for a discontinued product)
-DELETE FROM sales
-WHERE product_id = 9;
-
+-- -------------------------------
+-- Example Stored Procedure: Daily Sales by Store
+-- -------------------------------
 DELIMITER //
 
 CREATE PROCEDURE GetDailySalesByStore(
@@ -150,4 +158,5 @@ END //
 
 DELIMITER ;
 
+-- Example call
 CALL GetDailySalesByStore(1, '2025-09-01');
