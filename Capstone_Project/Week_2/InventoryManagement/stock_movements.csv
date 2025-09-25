@@ -1,6 +1,22 @@
-product_id,date,quantity
-1,2025-09-01,20
-1,2025-09-05,-5
-2,2025-09-02,15
-2,2025-09-07,-10
-3,2025-09-03,5
+product_id,product_name,movement_type,quantity,movement_date,reorder_level
+1,Laptop Pro X,IN,50,2025-01-10,20
+1,Laptop Pro X,OUT,10,2025-02-12,20
+2,Laptop Gamer Y,IN,30,2025-02-01,15
+3,Wireless Mouse Z,IN,200,2025-03-05,60
+4,Mechanical Keyboard K1,IN,80,2025-03-07,40
+5,24inch Monitor M24,IN,20,2025-03-10,30
+6,Ergo Chair Plus,IN,40,2025-04-01,10
+7,Office Desk D120,OUT,15,2025-04-03,8
+8,Laser Printer L200,IN,25,2025-04-10,6
+9,DualBand Router R2,IN,100,2025-04-12,30
+10,24port Switch S24,OUT,25,2025-04-15,20
+11,HDMI Cable 2m,IN,180,2025-05-01,120
+12,USB Cable 1m,IN,220,2025-05-02,150
+13,1TB SSD,OUT,12,2025-05-05,12
+14,2TB HDD,IN,18,2025-05-10,15
+15,32GB Pendrive,IN,60,2025-05-15,80
+16,HD Projector P300,OUT,6,2025-05-18,5
+17,Document Scanner S50,IN,20,2025-05-20,6
+18,600VA UPS,IN,30,2025-05-22,8
+19,Ceiling Fan 56in,OUT,45,2025-05-25,20
+20,1.5T Split AC,IN,12,2025-05-28,3
