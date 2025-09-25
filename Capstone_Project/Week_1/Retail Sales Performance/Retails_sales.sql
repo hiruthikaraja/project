@@ -1,13 +1,9 @@
--- -------------------------------
 -- Week 1: Retail Dashboard SQL
--- -------------------------------
 
 CREATE DATABASE IF NOT EXISTS retailDB;
 USE retailDB;
 
--- -------------------------------
--- Table: products
--- -------------------------------
+-- Products table
 CREATE TABLE IF NOT EXISTS products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(100),
@@ -39,9 +35,7 @@ INSERT INTO products (product_name, category, brand, price, stock_quantity) VALU
 ('Perfume','Accessories','Dior',7500,20),
 ('Chair','Furniture','Ikea',5000,15);
 
--- -------------------------------
--- Table: stores
--- -------------------------------
+-- Stores table
 CREATE TABLE IF NOT EXISTS stores (
     store_id INT AUTO_INCREMENT PRIMARY KEY,
     store_name VARCHAR(100),
@@ -62,9 +56,7 @@ INSERT INTO stores (store_name, region, city, manager_name) VALUES
 ('Store I','West','Pune','Sonal Patel'),
 ('Store J','North','Lucknow','Anjali Gupta');
 
--- -------------------------------
--- Table: employees
--- -------------------------------
+-- Employees table
 CREATE TABLE IF NOT EXISTS employees (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,
     employee_name VARCHAR(100),
@@ -97,9 +89,7 @@ INSERT INTO employees (employee_name, position, salary, hire_date, store_id) VAL
 ('Sanjay Verma','Cashier',20000,'2022-05-07',10),
 ('Riya Kapoor','Sales Associate',22000,'2021-03-14',10);
 
--- -------------------------------
--- Table: sales
--- -------------------------------
+-- Sales table
 CREATE TABLE IF NOT EXISTS sales (
     sale_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -135,28 +125,19 @@ INSERT INTO sales (product_id, store_id, employee_id, sale_date, quantity, total
 (19,10,19,'2025-09-10',2,3000),
 (20,10,20,'2025-09-10',1,1500);
 
--- -------------------------------
--- Example Stored Procedure: Daily Sales by Store
--- -------------------------------
+-- Stored procedure: Daily sales by store
 DELIMITER //
-
-CREATE PROCEDURE GetDailySalesByStore(
-    IN storeId INT,
-    IN saleDate DATE
-)
+CREATE PROCEDURE GetDailySalesByStore(IN storeId INT, IN saleDate DATE)
 BEGIN
-    SELECT 
-        st.store_name,
-        SUM(sa.total_amount) AS daily_sales,
-        COUNT(sa.sale_id) AS total_transactions
+    SELECT st.store_name,
+           SUM(sa.total_amount) AS daily_sales,
+           COUNT(sa.sale_id) AS total_transactions
     FROM sales sa
     JOIN stores st ON sa.store_id = st.store_id
-    WHERE sa.store_id = storeId 
+    WHERE sa.store_id = storeId
       AND sa.sale_date = saleDate
     GROUP BY st.store_name;
 END //
-
 DELIMITER ;
 
--- Example call
 CALL GetDailySalesByStore(1, '2025-09-01');
