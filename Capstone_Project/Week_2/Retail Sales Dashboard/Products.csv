@@ -9,4 +9,13 @@ product_id,product_name,category,brand,price,stock_quantity
 8,Watch,Accessories,Fossil,12000,35
 9,TV,Electronics,LG,65000,10
 10,Keyboard,Electronics,Logitech,1500,80
-
+11,Socks,Clothing,H&M,300,150
+12,Bag,Accessories,Gucci,25000,10
+13,Sunglasses,Accessories,RayBan,8000,25
+14,Printer,Electronics,HP,12000,18
+15,Mouse,Electronics,Logitech,1200,50
+16,Belt,Clothing,Levis,2000,40
+17,Monitor,Electronics,Samsung,18000,12
+18,Camera,Electronics,Canon,55000,8
+19,Perfume,Accessories,Dior,7500,20
+20,Chair,Furniture,Ikea,5000,15
