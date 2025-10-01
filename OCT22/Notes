@@ -1,4 +1,12 @@
-## 🖥️ On-Premises (Your First Notes)
+TaxSmile is an online income tax return (ITR) filing portal in India.
+
+It’s a private platform (not the official Income Tax Dept. portal), but it helps individuals, professionals, and businesses file their returns easily.
+
+It provides guided filing, expert-assisted filing, and ITR review services.
+
+The idea is to make ITR filing simpler for taxpayers by handling form selection, error-checking, and submission to the government system.
+
+## 🖥️ On-Premises 
 
 * You **buy physical servers** from a vendor in Germany (takes ~2 weeks).
 * You need **Network Engineers** working 24/7 (3 shifts + 1 backup team).
