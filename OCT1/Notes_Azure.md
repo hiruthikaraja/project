@@ -45,7 +45,7 @@ Fabric Controller → provisions and manages the actual resources on servers.
 
 Fabric Controller keeps checking health and availability.
 
-✅ Summary:
+Summary:
 
 User: Creates resources.
 
