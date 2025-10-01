@@ -6,16 +6,16 @@ It provides guided filing, expert-assisted filing, and ITR review services.
 
 The idea is to make ITR filing simpler for taxpayers by handling form selection, error-checking, and submission to the government system.
 
-## 🖥️ On-Premises 
+## On-Premises 
 
 * You **buy physical servers** from a vendor in Germany (takes ~2 weeks).
 * You need **Network Engineers** working 24/7 (3 shifts + 1 backup team).
 * You must pay for **power**, **UPS backup**, **cooling**, and even **room rent** for the servers.
 * Adding more servers later (for load testing) = more cost, more space, more setup.
 
-👉 In short: You spend money **beforehand (CapEx)** and manage everything yourself.
+ In short: You spend money **beforehand (CapEx)** and manage everything yourself.
 
-## ☁️ Azure (Cloud) Version
+##  Azure (Cloud) Version
 
 * Instead of waiting for servers, you just **create Virtual Machines (VMs) in Azure** → ready in minutes.
 * No physical network setup → you only set up **Virtual Network (VNet)**, firewalls, and load balancer inside Azure.
@@ -25,12 +25,12 @@ The idea is to make ITR filing simpler for taxpayers by handling form selection,
 * No need to pay for power, cooling, or room rent → Microsoft takes care of it.
 * During Apr–Aug, you simply **scale from 2 VMs → 5 VMs** for load testing, then scale down to save cost.
 
-👉 In short: You pay **only for what you use (OpEx)**, and scaling is flexible.
+ In short: You pay **only for what you use (OpEx)**, and scaling is flexible.
 
 
-## 💰 Cost Buckets in Azure (instead of CTC for infra)
+##  Cost Buckets in Azure (instead of CTC for infra)
 
-1. **Compute** – Pay for VM size and hours (e.g., D4s_v3 VM, ~₹X/hour).
+1. **Compute** – Pay for VM size and hours 
 2. **Storage** – For disks and backups.
 3. **Networking** – Outbound internet usage.
 4. **Team Cost** – Smaller but skilled cloud team.
