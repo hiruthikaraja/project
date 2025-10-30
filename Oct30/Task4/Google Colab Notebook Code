@@ -1,0 +1,19 @@
+import pandas as pd
+from pandasql import sqldf
+
+# Load processed file
+df = pd.read_csv("Processed_Sales.csv")
+
+# Simulate ETL
+df['updated_stock'] = df['quantity'] * 2
+df.to_csv("Updated_Stock.csv", index=False)
+
+# SQL Query
+query = """
+SELECT name, SUM(total_amount) AS total_sales
+FROM df
+GROUP BY name
+ORDER BY total_sales DESC
+LIMIT 5
+"""
+print(sqldf(query))
