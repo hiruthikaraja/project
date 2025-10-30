@@ -1,3 +1,4 @@
+#SQL
 CREATE DATABASE retail_db;
 USE retail_db;
 
@@ -50,3 +51,18 @@ END //
 DELIMITER ;
 
 CALL GetLowStockItems();
+
+#MONGODB
+
+// Database: retail_feedback
+use retail_feedback
+
+db.feedback.insertMany([
+  { "product_id": 1, "feedback": "Quality is excellent, fast delivery." },
+  { "product_id": 2, "feedback": "Nice design but smaller than expected." },
+  { "product_id": 3, "feedback": "Good material, fits perfectly." }
+]);
+
+// Index for faster search
+db.feedback.createIndex({ "product_id": 1 });
+
