@@ -1,0 +1,5 @@
+store_id,month,year,avg_monthly_revenue,update_status
+Store-01,10,2025,273.5,Existing
+Store-02,10,2025,1497.0,Existing
+Store-04,10,2025,15800.5,New
+Store-05,10,2025,19400.75,New
