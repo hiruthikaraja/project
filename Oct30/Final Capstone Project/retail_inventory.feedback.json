@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "690352705181d74c73cdcff0"
+  },
+  "product_id": 1,
+  "feedback": "The acrylic necklace quality is great, fast delivery!",
+  "rating": 5
+},
+{
+  "_id": {
+    "$oid": "690352705181d74c73cdcff1"
+  },
+  "product_id": 2,
+  "feedback": "Hoop earrings looked smaller than expected.",
+  "rating": 3
+},
+{
+  "_id": {
+    "$oid": "690352705181d74c73cdcff2"
+  },
+  "product_id": 3,
+  "feedback": "Cotton T-shirt fabric is soft, loved it!",
+  "rating": 4
+}]
