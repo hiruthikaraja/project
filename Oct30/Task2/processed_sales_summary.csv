@@ -1,0 +1,4 @@
+sale_id,product_id,sale_date,quantity,unit_price,store_id,total_amount,name,category,month,inventory_turnover
+3,3,2025-10-05 15:00:00,3,499.0,Store-02,1497.0,Cotton T-Shirt,Apparel,2025-10,0.1497
+2,2,2025-10-02 12:15:00,1,149.0,Store-01,149.0,Hoop Earrings,Accessories,2025-10,0.0149
+1,1,2025-10-01 10:00:00,2,199.0,Store-01,398.0,Acrylic Necklace,Accessories,2025-10,0.0398
